@@ -153,7 +153,7 @@ static void TimerCallback( TimerHandle_t xTimer ) {
 
 	configASSERT(xTimer);
 
-	static uint8_t bdt = 0;
+	//static uint8_t bdt = 0;
 	//configASSERT(!set_LED_BAR(2, 0x00));//sve LEDovke iskljucene
 	configASSERT(!set_LED_BAR(3, 0xF0));// gornje 4 LEDovke ukljucene
 	configASSERT(!set_LED_BAR(0, bdt)); // ukljucena LED-ovka se pomera od dole ka gore
