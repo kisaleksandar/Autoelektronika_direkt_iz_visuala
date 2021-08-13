@@ -142,7 +142,7 @@ void SerialSend_Task(void* pvParameters)
 		if (t_point > (sizeof(trigger) - 1))
 			t_point = 0;
 		send_serial_character(0, trigger[t_point]);
-		vTaskDelay(10);
+		vTaskDelay(1000);
 		send_serial_character(1, trigger[t_point++]+1);
 		//xSemaphoreTake(TBE_BinarySemaphore, portMAX_DELAY);// kada se koristi predajni interapt
 		vTaskDelay(pdMS_TO_TICKS(200)); // kada se koristi vremenski delay }
@@ -153,10 +153,11 @@ static void TimerCallback( TimerHandle_t xTimer ) {
 
 	configASSERT(xTimer);
 
-	//static uint8_t bdt = 0;
-	//configASSERT(!set_LED_BAR(2, 0x00));//sve LEDovke iskljucene
+	static uint8_t bdt = 0;
+	configASSERT(!set_LED_BAR(2, 0x00));//sve LEDovke iskljucene
 	configASSERT(!set_LED_BAR(3, 0xF0));// gornje 4 LEDovke ukljucene
 	configASSERT(!set_LED_BAR(0, bdt)); // ukljucena LED-ovka se pomera od dole ka gore
+	//samo da apdejtujem kod
 	bdt <<= 1;
 	if (bdt == 0)
 		bdt = 1;
